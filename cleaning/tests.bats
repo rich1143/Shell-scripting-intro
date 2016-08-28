@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+# Tests written by Nic McPhee, August 2016
+
 little=little_dir
 num_little_remaining_files=16
 
@@ -69,7 +71,7 @@ teardown() {
 
 @test "The new archive has (some) of the right files in it" {
   ./big_clean.sh $little.tgz $BATS_TMPDIR
-  run bash -c "tar -ztf cleaned_$little.tgz | grep '/f'"
+  run bash -c "tar -ztf cleaned_$little.tgz | grep '/f' | sort"
   [ "${lines[0]}" == "little_dir/file_1" ]
   [ "${lines[1]}" == "little_dir/file_10" ]
   [ "${lines[8]}" == "little_dir/file_19" ]
@@ -78,6 +80,5 @@ teardown() {
 @test "big_clean.sh returns the right number of files on the big archive" {
   run ./big_clean.sh $big.tgz $BATS_TMPDIR
   run bash -c "tar -ztf cleaned_$big.tgz | grep '/f' | wc -l"
-  echo $output > /tmp/output
   [ "$output" -eq $num_big_remaining_files ]
 }
