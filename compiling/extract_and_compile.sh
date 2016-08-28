@@ -5,4 +5,8 @@ DIRECTORY=$2
 
 tar zxf NthPrime.tgz --directory $DIRECTORY
 
-# rm -rf $SCRATCH
+cd $DIRECTORY/NthPrime
+
+gcc -o NthPrime main.c nth_prime.c
+
+./NthPrime $NUMBER
