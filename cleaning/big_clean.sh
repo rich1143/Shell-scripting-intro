@@ -4,6 +4,7 @@
 ARCHIVE=$1
 DIRECTORY=$2
 
+# Save location for later.
 HERE=`pwd`
 
 # Extract contents of tar archive into the directory.
@@ -17,9 +18,12 @@ cd $DIRECTORY/${ARCHIVE%.*}
 rm `grep -l DELETE ME! *`
 
 # Navigate to scratch directory.
-# This is where the new archive will be created.
 cd $DIRECTORY
 
-tar czf
+# `dir` returns everything inside $DIRECTORY.
+# Compress these files into a new tar archive.
+tar czf cleaned_$ARCHIVE `dir`
 
+# Now move the new directory to the correct location.
+mv cleaned_$ARCHIVE $HERE
 # /tmp/tmp.aZWeJ2ibgc my temporary directory
