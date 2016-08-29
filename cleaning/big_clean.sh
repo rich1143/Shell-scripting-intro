@@ -24,6 +24,5 @@ cd $DIRECTORY
 # Compress these files into a new tar archive.
 tar czf cleaned_$ARCHIVE `dir`
 
-# Now move the new directory to the correct location.
+# Now move the new archive to the correct location.
 mv cleaned_$ARCHIVE $HERE
-# /tmp/tmp.aZWeJ2ibgc my temporary directory
