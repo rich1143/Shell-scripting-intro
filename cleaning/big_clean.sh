@@ -21,8 +21,5 @@ rm `grep -l DELETE ME! *`
 cd $DIRECTORY
 
 # `dir` returns everything inside $DIRECTORY.
-# Compress these files into a new tar archive.
-tar czf cleaned_$ARCHIVE `dir`
-
-# Now move the new archive to the correct location.
-mv cleaned_$ARCHIVE $HERE
+# Compress these files into a new tar archive in the location saved earlier.
+tar czf "$HERE/cleaned_$ARCHIVE" `dir`
