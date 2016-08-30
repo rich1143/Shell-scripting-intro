@@ -10,16 +10,12 @@ HERE=`pwd`
 # Extract contents of tar archive into the directory.
 tar zxf $ARCHIVE --directory $DIRECTORY
 
-# Navigate to the new archive in the scratch directory.
+# Navigate to the scratch directory.
 # This is where the deleting will be done.
-cd $DIRECTORY/${ARCHIVE%.*}
-
-# Find and then delete all files containing "DELETE ME!"
-rm `grep -l DELETE ME! *`
-
-# Navigate to scratch directory.
 cd $DIRECTORY
 
-# `dir` returns everything inside $DIRECTORY.
-# Compress these files into a new tar archive in the location saved earlier.
-tar czf "$HERE/cleaned_$ARCHIVE" `dir`
+# Find and then delete all files containing "DELETE ME!"
+rm `grep -l -r "DELETE ME!" *`
+
+# Compress files into a new tar archive in the location saved earlier.
+tar czf "$HERE/cleaned_$ARCHIVE" *
